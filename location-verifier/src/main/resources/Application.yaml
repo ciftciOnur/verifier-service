@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: location-verifier-service
+  datasource:
+    url: jdbc:mysql://192.168.15.230:3306/verifierDB?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true
+    username: user
+    password: 123456
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5Dialect
