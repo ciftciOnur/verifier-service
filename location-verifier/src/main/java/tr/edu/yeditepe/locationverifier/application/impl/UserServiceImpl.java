@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;	
 	}
-	
+	@Override
 	public byte[] findPseudoId(String pseudoId) {
 		if(!userRepository.existsByPseudoId(pseudoId)) {
 			return null;
@@ -73,6 +73,14 @@ public class UserServiceImpl implements UserService{
 			return null;
 		}
 		return user.getAesSalt();
+	}
+	
+	@Override
+	public User findUserId(String userId) {
+		if(!userRepository.existsByUserId(userId)) {
+			return null;
+		}
+		return userRepository.findByUserId(userId);
 	}
 
 }

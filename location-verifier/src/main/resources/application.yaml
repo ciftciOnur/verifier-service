@@ -14,3 +14,6 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5Dialect
+
+    
+ntp-service.url: tr.pool.ntp.org

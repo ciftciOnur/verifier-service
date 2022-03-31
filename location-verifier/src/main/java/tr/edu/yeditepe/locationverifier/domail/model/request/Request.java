@@ -30,6 +30,7 @@ public class Request {
     private String beaconId;
     private String otp;
     private Long time;
+    private String proverOtp;
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Witness> witnesses;
     

@@ -1,7 +1,9 @@
 package tr.edu.yeditepe.locationverifier.application;
 
+import java.io.IOException;
+
 public interface LocationVerifierService {
 
-	void requestHandler(String crypedMessage);
+	boolean requestHandler(String crypedMessage) throws IOException;
 
 }
