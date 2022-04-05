@@ -1,23 +1,29 @@
 package tr.edu.yeditepe.locationverifier.application.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import tr.edu.yeditepe.locationverifier.application.BeaconService;
 import tr.edu.yeditepe.locationverifier.domail.model.beacon.Beacon;
 import tr.edu.yeditepe.locationverifier.domail.model.beacon.BeaconRepository;
 
+@Component
 public class BeaconServiceImpl implements BeaconService{
 	
 	@Autowired
 	BeaconRepository beaconRepository;
 	
 	@Override
-	public void crateBeacon(String algorithm,String beaconId, Integer precision) {
+	public String crateBeacon(String algorithm, Integer precision) {
+		UUID beaconId = UUID.randomUUID();
 		beaconRepository.save(Beacon.builder()
 				.algorithm(algorithm)
-				.beaconId(beaconId)
-				.precision(precision)
+				.beaconId(beaconId.toString())
+				.precisionNumber(precision)
 				.build());
+		return beaconId.toString();
 	}
 	
 	@Override

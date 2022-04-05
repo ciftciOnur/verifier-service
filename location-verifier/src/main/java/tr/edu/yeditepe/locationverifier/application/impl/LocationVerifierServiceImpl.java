@@ -44,10 +44,10 @@ public class LocationVerifierServiceImpl implements LocationVerifierService{
 		User prover = userService.findUserId(crypedMessages[0]);
 		requestRepository.save(Request.builder()
 				.beaconId("BeaconId")
-				.otp(totpService.GenerateTotpWithTime(timeStamp, beacon.getAlgorithm(),beacon.getPrecision()))
+				.otp(totpService.GenerateTotpWithTime(timeStamp, beacon.getAlgorithm(),beacon.getPrecisionNumber()))
 				.time(timeStamp)
 				.user(prover)
-				.proverOtp(totpService.GenerateTotpWithTime(timeStamp, prover.getPseudoId(),beacon.getPrecision()))
+				.proverOtp(totpService.GenerateTotpWithTime(timeStamp, prover.getPseudoId(),beacon.getPrecisionNumber()))
 				.build());
 		return true;
 		

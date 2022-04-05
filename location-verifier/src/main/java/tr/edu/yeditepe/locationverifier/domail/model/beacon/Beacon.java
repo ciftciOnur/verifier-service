@@ -21,9 +21,9 @@ import lombok.RequiredArgsConstructor;
 public class Beacon {
 	
 	@Id
-	int id;
-	String algorithm;
-	int precision;
-	String beaconId;
+	private int id;
+	private String algorithm;
+	private int precisionNumber;
+	private String beaconId;
 
 }
