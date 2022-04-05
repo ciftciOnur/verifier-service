@@ -51,4 +51,29 @@ public class TotpServiceImpl implements TotpService{
 		}
 		return null;
 	}
+	
+	@Override
+	public String GenerateTotpWithTime(long time,String algorithm,int precision) {
+		
+		time = (time/precision)*precision;
+        Instant instant = Instant.ofEpochMilli(time);
+		try {		
+		final Key key;
+			{
+			    final KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm);
+				    int macLengthInBytes;
+					macLengthInBytes = Mac.getInstance(algorithm).getMacLength();
+			    keyGenerator.init(macLengthInBytes * 8);
+			    key = keyGenerator.generateKey();
+			}
+	
+			return totpGenerator.generateOneTimePasswordString(key, instant);
+		} 
+		catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
