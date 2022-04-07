@@ -9,7 +9,7 @@ public interface UserService {
 
 	String updatePseudoId(String userId, String password);
 
-	byte[] findPseudoId(String pseudoId);
+	User findPseudoId(String pseudoId);
 
 	User findUserId(String userId);
 

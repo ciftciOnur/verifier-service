@@ -28,16 +28,16 @@ public class BeaconServiceImpl implements BeaconService{
 	@Override
 	public CreateBeaconResponseDTO crateBeacon(Long beaconTime) throws IOException {
 		Long verifierTime = ntpService.getTime();
-		String algorithm = totpService.GenerateTotpAlgorithm();
+		String key = totpService.generateTotpKey();
 		
 		UUID beaconId = UUID.randomUUID();
 		beaconRepository.save(Beacon.builder()
-				.algorithm(algorithm)
+				.totpKey(key)
 				.beaconId(beaconId.toString())
 				.precisionNumber(verifierTime-beaconTime)
 				.build());
 		return CreateBeaconResponseDTO.builder()
-				.algorithm(algorithm)
+				.totpKey(key)
 				.beaconId(beaconId.toString())
 				.precision(verifierTime-beaconTime)
 				.build();

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class CreateBeaconResponseDTO {
 	
-	String algorithm;
+	String totpKey;
 	String beaconId;
 	Long precision;
 

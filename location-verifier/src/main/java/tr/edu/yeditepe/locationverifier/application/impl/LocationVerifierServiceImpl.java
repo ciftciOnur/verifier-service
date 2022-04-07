@@ -43,12 +43,12 @@ public class LocationVerifierServiceImpl implements LocationVerifierService{
 	public boolean requestHandler(String crypedMessage) throws IOException {
 		long timeStamp = ntpService.getTime();
 		String[] crypedMessages = crypedMessage.split("###");
-		User prover = userService.findUserId(crypedMessages[1]);   //cryptedPart###beaconId
+		User prover = userService.findPseudoId(crypedMessages[1]);   //cryptedPart###beaconId
 		Beacon beacon = beaconService.findByBeaconId(crypedMessages[2]);
 		String encryptedPayload=crypedMessages[0];
 		requestRepository.save(Request.builder()
 				.beaconId("BeaconId")
-				.otp(totpService.GenerateTotpWithTime(timeStamp, beacon.getAlgorithm(),beacon.getPrecisionNumber()))
+				.otp(totpService.GenerateTotpWithTime(timeStamp, beacon.getTotpKey(),beacon.getPrecisionNumber()))
 				.time(timeStamp)
 				.user(prover)
 				.proverOtp(totpService.GenerateTotpWithTime(timeStamp, prover.getUserId() ,beacon.getPrecisionNumber()))

@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService{
 		return null;	
 	}
 	@Override
-	public byte[] findPseudoId(String pseudoId) {
+	public User findPseudoId(String pseudoId) {
 		if(!userRepository.existsByPseudoId(pseudoId)) {
 			return null;
 		}
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
 		if(user.getExpirationDate().isBefore(LocalDate.now())) {
 			return null;
 		}
-		return user.getAesSalt();
+		return user;
 	}
 	
 	@Override
