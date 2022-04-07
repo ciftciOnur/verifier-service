@@ -1,5 +1,7 @@
 package tr.edu.yeditepe.locationverifier.interfaces.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tr.edu.yeditepe.locationverifier.application.BeaconService;
 import tr.edu.yeditepe.locationverifier.interfaces.dto.CreateBeaconRequestDTO;
+import tr.edu.yeditepe.locationverifier.interfaces.dto.CreateBeaconResponseDTO;
 
 
 @RestController
@@ -20,9 +23,8 @@ public class BeaconController {
 	BeaconService beaconService;
 	
     @RequestMapping(value = "/create-beacon", method = RequestMethod.POST)
-    ResponseEntity<String> createBeacon(@RequestBody CreateBeaconRequestDTO request) {
-        return new ResponseEntity<String>(beaconService
-        		.crateBeacon(request.getAlgorithm(),  request.getPrecision()), HttpStatus.CREATED);
+    ResponseEntity<CreateBeaconResponseDTO> createBeacon(@RequestBody CreateBeaconRequestDTO request) throws IOException {
+        return new ResponseEntity<CreateBeaconResponseDTO>(beaconService.crateBeacon(request.getTime()), HttpStatus.CREATED);
     }
 
 }

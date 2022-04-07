@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 public class CreateBeaconRequestDTO {
 	
-	private String algorithm;
-	private int precision;
+	private long time;
 
 }

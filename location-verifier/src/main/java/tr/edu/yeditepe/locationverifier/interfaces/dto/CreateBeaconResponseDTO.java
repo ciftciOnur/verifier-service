@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class CreateUserResponseDTO {
+public class CreateBeaconResponseDTO {
 	
-	private String userId;
-	private String pseudoId;
-	private String aesSalt;
+	String algorithm;
+	String beaconId;
+	Long precision;
 
 }

@@ -1,6 +1,7 @@
 package tr.edu.yeditepe.locationverifier.application.impl;
 
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService{
 				.build()
 				);
 		return CreateUserResponseDTO.builder()
+				.aesSalt(Base64.getEncoder().encodeToString(aesSalt))
 				.pseudoId(pseudoId.toString())
 				.userId(userId.toString())
 				.build();

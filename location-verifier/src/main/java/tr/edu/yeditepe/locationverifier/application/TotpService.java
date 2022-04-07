@@ -2,8 +2,8 @@ package tr.edu.yeditepe.locationverifier.application;
 
 public interface TotpService {
 
-	String GenerateTotp();
+	String GenerateTotpAlgorithm();
 
-	String GenerateTotpWithTime(long time, String algorithm, int precision);
+	String GenerateTotpWithTime(long time, String algorithm, long precision);
 
 }

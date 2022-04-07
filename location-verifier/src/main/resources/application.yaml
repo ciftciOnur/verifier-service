@@ -4,9 +4,9 @@ spring:
   application:
     name: location-verifier-service
   datasource:
-    url: jdbc:mysql://192.168.15.230:3306/verifierDB?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true
-    username: user
-    password: 123456
+    url: jdbc:mysql://location-verification.crv9qy09q0zr.us-east-1.rds.amazonaws.com:3306/verifierDB?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true
+    username: admin
+    password: 1522onur
   jpa:
     show-sql: true
     hibernate:

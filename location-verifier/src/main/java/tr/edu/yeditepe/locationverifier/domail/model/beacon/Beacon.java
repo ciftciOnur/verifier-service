@@ -23,7 +23,7 @@ public class Beacon {
 	@Id
 	private int id;
 	private String algorithm;
-	private int precisionNumber;
+	private long precisionNumber;
 	private String beaconId;
 
 }

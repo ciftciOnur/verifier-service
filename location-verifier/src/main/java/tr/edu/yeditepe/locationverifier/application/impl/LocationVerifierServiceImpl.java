@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.google.common.base.Objects;
 
+import tr.edu.yeditepe.locationverifier.application.AesService;
 import tr.edu.yeditepe.locationverifier.application.BeaconService;
 import tr.edu.yeditepe.locationverifier.application.LocationVerifierService;
 import tr.edu.yeditepe.locationverifier.application.NtpService;
@@ -35,19 +36,22 @@ public class LocationVerifierServiceImpl implements LocationVerifierService{
 	@Autowired 
 	BeaconService beaconService;
 	
+	@Autowired 
+	AesService aesService;
+	
 	@Override
 	public boolean requestHandler(String crypedMessage) throws IOException {
 		long timeStamp = ntpService.getTime();
 		String[] crypedMessages = crypedMessage.split("###");
-		User test = userService.findUserId(crypedMessages[0]);
-		Beacon beacon = beaconService.findByBeaconId("BeaconId");
-		User prover = userService.findUserId(crypedMessages[0]);
+		User prover = userService.findUserId(crypedMessages[1]);   //cryptedPart###beaconId
+		Beacon beacon = beaconService.findByBeaconId(crypedMessages[2]);
+		String encryptedPayload=crypedMessages[0];
 		requestRepository.save(Request.builder()
 				.beaconId("BeaconId")
 				.otp(totpService.GenerateTotpWithTime(timeStamp, beacon.getAlgorithm(),beacon.getPrecisionNumber()))
 				.time(timeStamp)
 				.user(prover)
-				.proverOtp(totpService.GenerateTotpWithTime(timeStamp, prover.getPseudoId(),beacon.getPrecisionNumber()))
+				.proverOtp(totpService.GenerateTotpWithTime(timeStamp, prover.getUserId() ,beacon.getPrecisionNumber()))
 				.build());
 		return true;
 		
